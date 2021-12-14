@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
 
-mongoose.connect("mongodb://localhost:27017/ToDoLis", options).then(
+mongoose.connect(process.env.URL, options).then(
   () => {
     console.log("DB Ready To Use");
   },
