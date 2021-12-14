@@ -11,13 +11,11 @@ const createNewToDo = (req, res) => {
   todo
     .save()
     .then((result) => {
-      res
-        .status(201)
-        .json({
-          success: true,
-          massage: "Success To Do created",
-          todo: result,
-        });
+      res.status(201).json({
+        success: true,
+        massage: "Success To Do created",
+        todo: result,
+      });
     })
     .catch((err) => {
       res
@@ -26,4 +24,21 @@ const createNewToDo = (req, res) => {
     });
 };
 
-module.exports = { createNewToDo };
+const getAllToDos = (req,res) => {
+  todosModul
+    .find({})
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        massage: "all the todos",
+        allTheTodos: result,
+      });
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ success: false, massage: "server error", err: err });
+    });
+};
+
+module.exports = { createNewToDo, getAllToDos };
