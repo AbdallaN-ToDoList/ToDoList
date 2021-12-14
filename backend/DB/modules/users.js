@@ -5,7 +5,7 @@ const userScema = new mongoose.Schema({
   lastName: { type: String },
   email: { type: String, unique: true },
   password: { type: String },
-  isCompleted: { type: mongoose.Schema.Types.ObjectId, ref: ToDos },
+  isCompleted: [{ type: mongoose.Schema.Types.ObjectId, ref: "ToDos" }],
 });
 
 module.exports = mongoose.model("User", userScema);
