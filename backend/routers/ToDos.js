@@ -1,9 +1,10 @@
 const express = require("express");
 
-const { createNewToDo } = require("../controllers/ToDos");
+const { createNewToDo, getAllToDos } = require("../controllers/ToDos");
 
 const todosRouter = express.Router();
 
 todosRouter.post("/", createNewToDo);
+todosRouter.get("/", getAllToDos);
 
 module.exports = todosRouter;
