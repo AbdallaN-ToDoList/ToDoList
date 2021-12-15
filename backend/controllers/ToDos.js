@@ -24,7 +24,7 @@ const createNewToDo = (req, res) => {
     });
 };
 
-const getAllToDos = (req,res) => {
+const getAllToDos = (req, res) => {
   todosModul
     .find({})
     .then((result) => {
@@ -41,4 +41,23 @@ const getAllToDos = (req,res) => {
     });
 };
 
-module.exports = { createNewToDo, getAllToDos };
+const updateToDos = (req, res) => {
+  const id = req.params.id;
+
+  todosModul
+    .findByIdAndUpdate({ _id: id }, req.body, { new: true })
+    .then((result) => {
+      res.status(201).json({
+        success: true,
+        massage: "Success ToDo update",
+        updatedTodos: result,
+      });
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ success: false, massage: "server error", err: err });
+    });
+};
+
+module.exports = { createNewToDo, getAllToDos, updateToDos };
