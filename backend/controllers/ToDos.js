@@ -60,4 +60,22 @@ const updateToDos = (req, res) => {
     });
 };
 
-module.exports = { createNewToDo, getAllToDos, updateToDos };
+const deleteToDo = (req, res) => {
+  const id = req.params.id;
+  todosModul
+    .findByIdAndDelete({ _id: id })
+    .then((result) => {
+      res.status(201).json({
+        success: true,
+        massage: "Success ToDo delete",
+        delete: id,
+      });
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ success: false, massage: "server error", err: err });
+    });
+};
+
+module.exports = { createNewToDo, getAllToDos, updateToDos, deleteToDo };
